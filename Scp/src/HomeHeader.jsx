@@ -15,9 +15,6 @@ function HomeHeader() {
         <Link to="/admin">Admin</Link>
       </nav>
 
-      <div className="home-sign">
-        <button className="sign-btn">Sign In</button>
-      </div>
     </header>
   );
 }
