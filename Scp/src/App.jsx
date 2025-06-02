@@ -14,8 +14,6 @@ function AppContent() {
   return (
     <>
       <HomeHeader />
-
-      {/* Directory layout with sidebar */}
       {isDirectory ? (
         <div className="directory-layout">
           <div className="directory-sidebar-scroll">

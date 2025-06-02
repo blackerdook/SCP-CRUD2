@@ -9,15 +9,18 @@ function AdminPanel() {
   const [editRecord, setEditRecord] = useState(null);
   const [confirmation, setConfirmation] = useState('');
 
+  // Fetch all records on initial load
   useEffect(() => {
     fetchItems();
   }, []);
 
+  // Retrieve SCP entries from the database
   const fetchItems = async () => {
     let { data } = await supabase.from('SCP').select('*');
     setItems(data || []);
   };
 
+  // Add a new SCP record
   const addItem = async () => {
     const { error } = await supabase.from('SCP').insert([newRecord]);
     if (!error) {
@@ -30,15 +33,18 @@ function AdminPanel() {
     }
   };
 
+  // Delete an existing SCP record
   const deleteItem = async (id) => {
     await supabase.from('SCP').delete().eq('id', id);
     fetchItems();
   };
 
+  // Begin editing a record
   const startEditing = (item) => {
     setEditRecord({ ...item });
   };
 
+  // Save the edited SCP record
   const saveEdit = async () => {
     const { error } = await supabase.from('SCP').update(editRecord).eq('id', editRecord.id);
     if (!error) {

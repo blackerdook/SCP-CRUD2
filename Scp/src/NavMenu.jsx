@@ -5,8 +5,9 @@ import './main.css';
 
 function NavMenu() {
   const [items, setItems] = useState([]);
-  const location = useLocation();
+  const location = useLocation(); // Get current route path
 
+  // Fetch list of SCP items on load
   useEffect(() => {
     const fetchItems = async () => {
       let { data } = await supabase.from('SCP').select('id, item');
@@ -22,6 +23,7 @@ function NavMenu() {
         <ul className="sidebar-list">
           {items.map((item) => (
             <li key={item.id}>
+              {/* Highlight the active link */}
               <Link
                 to={`/item/${item.id}`}
                 className={`sidebar-link ${location.pathname === `/item/${item.id}` ? 'active' : ''}`}

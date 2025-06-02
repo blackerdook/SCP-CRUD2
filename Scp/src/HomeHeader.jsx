@@ -5,9 +5,7 @@ import './main.css';
 function HomeHeader() {
   return (
     <header className="home-header">
-      <div className="home-logo">
-        SCP<span className="dot">.</span>
-      </div>
+      <div className="home-logo">SCP<span className="dot">.</span></div>
 
       <nav className="home-nav-center">
         <Link to="/">Home</Link>

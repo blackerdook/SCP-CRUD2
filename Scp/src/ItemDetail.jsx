@@ -4,9 +4,10 @@ import { supabase } from './supabase';
 import './main.css';
 
 function ItemDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); // Get the SCP ID from the route
   const [itemData, setItemData] = useState(null);
 
+  // Fetch item details when the ID changes
   useEffect(() => {
     const fetchItemDetails = async () => {
       let { data } = await supabase.from('SCP').select('*').eq('id', id).single();
@@ -16,6 +17,7 @@ function ItemDetail() {
   }, [id]);
 
   return itemData ? (
+    // Display item details
     <div className="item-detail-page">
       <div className="item-detail-header">
         <h1 className="item-title">{itemData.item}</h1>
@@ -43,6 +45,7 @@ function ItemDetail() {
       </div>
     </div>
   ) : (
+    // Loading state
     <div className="item-detail-page">
       <p className="loading">Loading SCP data...</p>
     </div>

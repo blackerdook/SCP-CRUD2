@@ -1,4 +1,4 @@
-// utils/uploadImage.js
+// Upload image file to Supabase Storage
 export async function uploadImageFile(file, supabase, userId) {
   const fileExt = file.name.split('.').pop();
   const fileName = `${userId}-${Date.now()}.${fileExt}`;
@@ -6,7 +6,7 @@ export async function uploadImageFile(file, supabase, userId) {
 
   const { data, error } = await supabase.storage
     .from('buck')
-    .upload(filePath, file, { upsert: true });
+    .upload(filePath, file, { upsert: true }); // Upload or replace if exists
 
   if (error) {
     console.error("Upload Error:", error.message);
@@ -17,6 +17,7 @@ export async function uploadImageFile(file, supabase, userId) {
   return filePath;
 }
 
+// Get public URL for an uploaded file
 export function getPublicUrl(path, supabase) {
   const { data } = supabase.storage.from('buck').getPublicUrl(path);
   return data.publicUrl;
